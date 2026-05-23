@@ -1,0 +1,414 @@
+/* ── Tokens ── */
+:root {
+  --bg:          #ffffff;
+  --surface:     #f6f6f6;
+  --border:      #e8e8e8;
+  --text:        #111111;
+  --text-2:      #666666;
+  --accent:      #5b5ef4;
+  --accent-soft: rgba(91, 94, 244, 0.1);
+  --radius:      12px;
+  --font:        system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+[data-theme="dark"] {
+  --bg:          #0d0d0d;
+  --surface:     #181818;
+  --border:      #282828;
+  --text:        #efefef;
+  --text-2:      #888888;
+  --accent:      #7c7ef5;
+  --accent-soft: rgba(124, 126, 245, 0.12);
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
+button { cursor: pointer; background: none; border: none; font: inherit; color: inherit }
+input  { font: inherit; color: inherit }
+a      { color: var(--accent); text-decoration: none }
+a:hover { text-decoration: underline }
+code   { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.85em }
+
+/* ── Shell ── */
+.app {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  min-height: 100svh;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* ── Header ── */
+.header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.logo {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.theme-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--text-2);
+  transition: color 0.15s, border-color 0.15s;
+}
+.theme-btn:hover { color: var(--text); border-color: var(--text-2) }
+
+/* ── Hero ── */
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px 48px;
+  gap: 14px;
+  position: relative;
+}
+
+.hero-badges {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.badge-early {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: #f59e0b22;
+  color: #d97706;
+  border: 1px solid #f59e0b55;
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+
+[data-theme='dark'] .badge-early {
+  background: #f59e0b18;
+  color: #fbbf24;
+  border-color: #f59e0b44;
+}
+
+.badge-version {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  background: var(--surface-2);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+
+.hero-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.hero-motto {
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  min-height: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-sub {
+  font-size: 1rem;
+  color: var(--text-2);
+}
+
+.hero-by {
+  font-size: 0.8rem;
+  color: var(--text-2);
+  margin-top: -6px;
+}
+
+.hero-by a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.hero-by a:hover {
+  text-decoration: underline;
+}
+
+.hero-arrow {
+  position: absolute;
+  bottom: 32px;
+  font-size: 1.1rem;
+  color: var(--text-2);
+  animation: bob 2s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0)   }
+  50%       { transform: translateY(7px) }
+}
+
+/* ── Examples ── */
+.examples {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 80px 24px 64px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+/* ── Card ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.span-2 { grid-column: span 2 }
+
+.card-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.card-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-badge {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.card-hint {
+  font-size: 0.78rem;
+  color: var(--text-2);
+}
+
+.demo-row {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+}
+
+.demo-text {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* ── Controls ── */
+.input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.tg-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.tg-input:focus       { border-color: var(--accent) }
+.tg-input::placeholder { color: var(--text-2) }
+
+.tg-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.83rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+.tg-btn:hover    { opacity: 0.85 }
+.tg-btn:disabled { opacity: 0.4; cursor: default }
+
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pill {
+  padding: 5px 12px;
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-2);
+  border: 1px solid var(--border);
+  background: var(--bg);
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.pill:hover  { color: var(--text); border-color: var(--text-2) }
+.pill.active {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.tg-slider {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+/* ── All modes grid ── */
+.modes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.mode-cell {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mode-name {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-2);
+}
+
+.mode-text {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* ── Loader card ── */
+.loader-live {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+}
+
+.loader-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.loader-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 4px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  overflow: hidden;
+  transition: border-color 0.15s, background 0.15s;
+}
+.loader-cell:hover  { border-color: var(--text-2) }
+.loader-cell.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.loader-stage {
+  height: 56px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.loader-name {
+  font-size: 0.62rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-2);
+  flex-shrink: 0;
+}
+
+/* ── Wrapper badge ── */
+.badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 99px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* ── Footer ── */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 24px 32px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  color: var(--text-2);
+  transition: border-color 0.2s;
+}
+
+.dot { color: var(--border) }
+
+/* ── Responsive ── */
+@media (max-width: 680px) {
+  .grid          { grid-template-columns: 1fr }
+  .span-2        { grid-column: span 1 }
+  .modes-grid    { grid-template-columns: repeat(2, 1fr) }
+  .loader-grid   { grid-template-columns: repeat(4, 1fr) }
+  .header        { padding: 14px 20px }
+  .hero-motto    { font-size: clamp(1.8rem, 9vw, 3rem) }
+}
